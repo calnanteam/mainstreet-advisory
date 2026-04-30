@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mainstreet Advisory | Financial Due Diligence for Business Acquisitions</title>
+  <meta name="description" content="CPA-led Quality of Earnings reports and buy-side financial due diligence for $500K–$5M business acquisitions. Flat fees. Fast turnaround. Built for ETA buyers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ─── DESIGN TOKENS ─────────────────────────────────────── */
+    :root {
+      --navy:       #1B2B4A;
+      --navy-light: #243756;
+      --gold:       #C4934A;
+      --gold-light: #D9A85E;
+      --bg:         #F9F8F6;
+      --white:      #FFFFFF;
+      --text:       #2D3748;
+      --muted:      #64748B;
+      --border:     #E5E2DC;
+      --danger:     #C0392B;
+      --serif:      'Playfair Display', Georgia, serif;
+      --sans:       'Inter', system-ui, sans-serif;
+      --shadow-sm:  0 1px 3px rgba(0,0,0,.08);
+      --shadow-md:  0 4px 16px rgba(0,0,0,.10);
+      --shadow-lg:  0 12px 40px rgba(0,0,0,.14);
+      --radius:     8px;
+      --radius-lg:  14px;
+    }
+
+    /* ─── RESET & BASE ──────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ─── LAYOUT ─────────────────────────────────────────────── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section { padding: 96px 0; }
+    .section--alt { background: var(--white); }
+    .section--navy { background: var(--navy); color: var(--white); }
+    .section--dark { background: #111827; color: var(--white); }
+
+    /* ─── TYPOGRAPHY ────────────────────────────────────────── */
+    h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; line-height: 1.2; color: var(--navy); }
+    h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); }
+    h3 { font-size: 1.4rem; }
+    h4 { font-family: var(--sans); font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--gold); }
+    p { max-width: 660px; }
+    .lead { font-size: 1.2rem; line-height: 1.7; color: var(--muted); }
+    .center { text-align: center; }
+    .center p { margin: 0 auto; }
+
+    /* ─── BUTTONS ────────────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: .95rem;
+      font-weight: 600;
+      letter-spacing: .03em;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s, background .15s;
+      border: none;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn--primary {
+      background: var(--gold);
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(196,147,74,.35);
+    }
+    .btn--primary:hover { background: var(--gold-light); box-shadow: 0 6px 20px rgba(196,147,74,.45); }
+    .btn--outline {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+    }
+    .btn--outline:hover { background: var(--navy); color: var(--white); }
+    .btn--outline-white {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,.5);
+    }
+    .btn--outline-white:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+    .btn--lg { padding: 18px 40px; font-size: 1.05rem; }
+
+    /* ─── NAVIGATION ─────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav__logo { display: flex; align-items: center; gap: 10px; }
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav__links a {
+      font-size: .9rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    .nav__links a:hover { color: var(--navy); }
+    .nav__cta { margin-left: 12px; }
+    @media (max-width: 768px) {
+      .nav__links { display: none; }
+      .nav__cta { display: none; }
+    }
+
+    /* ─── LOGO SVG ───────────────────────────────────────────── */
+    .logo-svg { height: 48px; width: auto; }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      color: var(--white);
+      padding: 120px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -80px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(196,147,74,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .hero h1 { color: var(--white); margin-bottom: 20px; }
+    .hero h1 span { color: var(--gold); }
+    .hero .lead { color: rgba(255,255,255,.75); margin-bottom: 40px; }
+    .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero__card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      backdrop-filter: blur(4px);
+    }
+    .hero__stat { margin-bottom: 24px; }
+    .hero__stat:last-child { margin-bottom: 0; }
+    .hero__stat-num {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero__stat-label { font-size: .9rem; color: rgba(255,255,255,.65); margin-top: 4px; }
+    .hero__divider { height: 1px; background: rgba(255,255,255,.1); margin: 20px 0; }
+    @media (max-width: 900px) {
+      .hero__grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero__card { max-width: 420px; }
+    }
+
+    /* ─── TRUST BAR ──────────────────────────────────────────── */
+    .trust-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .trust-bar__inner {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .9rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .trust-item svg { color: var(--gold); flex-shrink: 0; }
+
+    /* ─── PROBLEM SECTION ────────────────────────────────────── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 56px;
+    }
+    .problem-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      position: relative;
+    }
+    .problem-card__icon {
+      width: 44px; height: 44px;
+      background: #FEF3E8;
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+    .problem-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .problem-card p { font-size: .95rem; color: var(--muted); max-width: none; }
+    @media (max-width: 768px) {
+      .problem-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── SERVICES ───────────────────────────────────────────── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      position: relative;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .service-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .service-card--featured {
+      border-color: var(--gold);
+      border-width: 2px;
+    }
+    .service-card--featured::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -14px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+    }
+    .service-card__tier {
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .service-card h3 { margin-bottom: 4px; }
+    .service-card__price {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 16px 0;
+      line-height: 1;
+    }
+    .service-card__price span { font-size: 1rem; font-family: var(--sans); font-weight: 400; color: var(--muted); }
+    .service-card__desc { font-size: .95rem; color: var(--muted); margin-bottom: 24px; }
+    .service-card__features { margin-bottom: 32px; }
+    .service-card__features li {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: .9rem; color: var(--text);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .service-card__features li:last-child { border-bottom: none; }
+    .service-card__features li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .service-card__cta { width: 100%; text-align: center; padding: 14px; }
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about__photo {
+      background: var(--navy-light);
+      border-radius: var(--radius-lg);
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .about__photo-placeholder {
+      text-align: center;
+      color: rgba(255,255,255,.4);
+    }
+    .about__photo-placeholder svg { margin: 0 auto 12px; }
+    .about__photo-placeholder p { font-size: .85rem; }
+    .about__credentials {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 24px 0;
+    }
+    .credential-badge {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 8px 16px;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .about__text h2 { margin-bottom: 20px; }
+    .about__text p { margin-bottom: 16px; color: var(--muted); }
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about__photo { aspect-ratio: 3/2; }
+    }
+
+    /* ─── PROCESS ────────────────────────────────────────────── */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 56px;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 16px);
+      right: calc(12.5% + 16px);
+      height: 2px;
+      background: var(--border);
+    }
+    .process-step { text-align: center; position: relative; }
+    .process-step__num {
+      width: 56px; height: 56px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0 auto 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .process-step h3 { font-size: 1rem; margin-bottom: 8px; }
+    .process-step p { font-size: .9rem; color: var(--muted); max-width: none; }
+    @media (max-width: 768px) {
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-steps::before { display: none; }
+    }
+    @media (max-width: 480px) {
+      .process-steps { grid-template-columns: 1fr; }
+    }
+
+    /* ─── WHO IT'S FOR ───────────────────────────────────────── */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .audience-card {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      background: rgba(255,255,255,.04);
+    }
+    .audience-card h3 { color: var(--white); margin-bottom: 12px; }
+    .audience-card p { color: rgba(255,255,255,.65); font-size: .95rem; max-width: none; }
+    .audience-card__tag {
+      display: inline-block;
+      background: rgba(196,147,74,.2);
+      color: var(--gold-light);
+      font-size: .75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 640px) {
+      .audience-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── FAQ ────────────────────────────────────────────────── */
+    .faq { max-width: 760px; margin: 56px auto 0; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-q__icon {
+      flex-shrink: 0;
+      width: 24px; height: 24px;
+      background: var(--bg);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .25s, background .2s;
+      font-size: .8rem;
+    }
+    .faq-item.open .faq-q__icon { transform: rotate(45deg); background: var(--gold); color: var(--white); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .3s ease;
+    }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a__inner { padding: 0 24px 22px; color: var(--muted); font-size: .95rem; line-height: 1.7; }
+
+    /* ─── DISCLAIMER CALLOUT ─────────────────────────────────── */
+    .disclaimer-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-top: 40px;
+    }
+    .disclaimer-box p { font-size: .85rem; color: var(--muted); max-width: none; }
+
+    /* ─── CTA SECTION ────────────────────────────────────────── */
+    .cta-section {
+      background: var(--navy);
+      color: var(--white);
+      padding: 96px 0;
+      text-align: center;
+    }
+    .cta-section h2 { color: var(--white); margin-bottom: 20px; }
+    .cta-section .lead { color: rgba(255,255,255,.7); margin: 0 auto 40px; }
+    .cta-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .cta-form input {
+      padding: 14px 20px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: .95rem;
+      width: 280px;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .cta-form input::placeholder { color: rgba(255,255,255,.4); }
+    .cta-form input:focus { border-color: var(--gold); }
+    .cta-note { font-size: .85rem; color: rgba(255,255,255,.45); }
+
+    /* ─── CONTACT ────────────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info h2 { margin-bottom: 16px; }
+    .contact-info p { color: var(--muted); margin-bottom: 32px; }
+    .contact-detail {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .95rem;
+    }
+    .contact-detail:last-child { border-bottom: none; }
+    .contact-detail__icon {
+      width: 40px; height: 40px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+    .contact-detail a { color: var(--gold); }
+    .contact-form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--sans);
+      font-size: .95rem;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); background: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-submit { width: 100%; padding: 16px; font-size: 1rem; }
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.6);
+      padding: 56px 0 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      margin-bottom: 32px;
+    }
+    .footer-brand p { font-size: .9rem; margin-top: 16px; line-height: 1.65; max-width: 320px; }
+    .footer-col h4 {
+      font-family: var(--sans);
+      font-size: .8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .footer-col li { padding: 5px 0; font-size: .9rem; }
+    .footer-col a { transition: color .2s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-disclaimer {
+      font-size: .78rem;
+      max-width: 680px;
+      line-height: 1.6;
+      color: rgba(255,255,255,.38);
+    }
+    .footer-copy { font-size: .85rem; white-space: nowrap; }
+    @media (max-width: 768px) {
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    /* ─── UTILS ──────────────────────────────────────────────── */
+    .mb-2 { margin-bottom: 8px; }
+    .mb-4 { margin-bottom: 16px; }
+    .mb-6 { margin-bottom: 24px; }
+    .mt-4 { margin-top: 16px; }
+    .mt-8 { margin-top: 32px; }
+    .text-gold { color: var(--gold); }
+    .fw-600 { font-weight: 600; }
+
+    /* ─── MOBILE NAV TOGGLE ──────────────────────────────────── */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .nav__hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: .3s;
+    }
+    @media (max-width: 768px) {
+      .nav__hamburger { display: flex; }
+    }
+
+    /* ─── SCROLL REVEAL PLACEHOLDERS ────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ──────────────────────────────────────── -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav__inner">
+
+      <!-- Logo -->
+      <a href="#" class="nav__logo" aria-label="Mainstreet Advisory home">
+        <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60" fill="none" aria-hidden="true">
+          <rect x="0" y="34" width="9" height="22" rx="1.5" fill="#C4934A"/>
+          <rect x="13" y="23" width="9" height="33" rx="1.5" fill="#C4934A"/>
+          <rect x="26" y="10" width="9" height="46" rx="1.5" fill="#1B2B4A"/>
+          <text x="46" y="34" font-family="Georgia,'Times New Roman',serif" font-size="21" font-weight="700" fill="#1B2B4A" letter-spacing="3">MAINSTREET</text>
+          <rect x="46" y="39" width="248" height="1" fill="#C4934A" opacity="0.45"/>
+          <text x="48" y="54" font-family="Georgia,'Times New Roman',serif" font-size="12" fill="#C4934A" letter-spacing="6">ADVISORY</text>
+        </svg>
+      </a>
+
+      <div class="nav__links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#process">How It Works</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <a href="#contact" class="btn btn--primary nav__cta">Get a Quote</a>
+      <div class="nav__hamburger" onclick="toggleMenu()" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────── -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero__grid">
+
+      <div>
+        <h4 style="color:rgba(196,147,74,.9); margin-bottom:16px;">Buy-Side Financial Due Diligence</h4>
+        <h1>Know What You're<br><span>Buying.</span></h1>
+        <p class="lead">CPA-led Quality of Earnings reports for entrepreneurs acquiring businesses between $500K and $5M. Flat fees. 1–3 week turnaround. No Big Four rates.</p>
+        <div class="hero__actions">
+          <a href="#contact" class="btn btn--primary btn--lg">Get a Quote</a>
+          <a href="#services" class="btn btn--outline-white btn--lg">See Services</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="hero__card">
+          <div class="hero__stat">
+            <div class="hero__stat-num">4×</div>
+            <div class="hero__stat-label">Every dollar of adjusted earnings impacts your purchase price by 4× at a standard multiple. A $50K earnings overstatement costs you $200K.</div>
+          </div>
+          <div class="hero__divider"></div>
+          <div class="hero__stat">
+            <div class="hero__stat-num">$2,500</div>
+            <div class="hero__stat-label">Starting price for a QoE report. At a 4× multiple, catching one $25K earnings overstatement returns 40× the fee.</div>
+          </div>
+          <div class="hero__divider"></div>
+          <div class="hero__stat">
+            <div class="hero__stat-num">1–3 wks</div>
+            <div class="hero__stat-label">Standard turnaround. Fast enough to keep your deal moving without rushing the analysis.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ────────────────────────────────────────── -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar__inner">
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        CPA, CMA Credentialed
+      </div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Flat-Fee, No Surprises
+      </div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        SBA-Compatible Reports
+      </div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        $500K–$5M Deal Specialist
+      </div>
+      <div class="trust-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        1–3 Week Turnaround
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROBLEM ──────────────────────────────────────────── -->
+<section class="section" id="problem">
+  <div class="container">
+    <h4>The Problem</h4>
+    <h2>Most small business buyers fly blind into closing.</h2>
+    <p class="lead" style="margin-top:16px;">The broker's financials look clean. The CIM tells a good story. But the numbers you see aren't always the numbers you're buying.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <div class="problem-card__icon">🔍</div>
+        <h3>Seller financials are almost never audit-ready</h3>
+        <p>Small business P&Ls routinely mix personal expenses into operating costs, inflate EBITDA through owner compensation tricks, and bury one-time items in recurring revenue. You need someone who reads these every day.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="problem-card__icon">💸</div>
+        <h3>One bad add-back can cost you six figures</h3>
+        <p>At a 4× EBITDA multiple, every $25,000 of overstated earnings inflates the price by $100,000. A QoE report that finds three issues like this returns 20–50× its cost on a single deal.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="problem-card__icon">⚡</div>
+        <h3>Big Four won't touch deals under $5M</h3>
+        <p>A Deloitte QoE report costs $25,000–$100,000+. For a $1M deal, that's irrational. Budget QoE shops do templates, not analysis. There's been no good option in the middle — until now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ─────────────────────────────────────────── -->
+<section class="section section--alt" id="services">
+  <div class="container">
+    <h4>Services & Pricing</h4>
+    <h2>Transparent pricing.<br>No custom quotes required.</h2>
+    <p class="lead" style="margin-top:16px;">Pick the tier that matches your deal. All fees are flat — what you see is what you pay.</p>
+
+    <div class="services-grid">
+
+      <!-- QoE Lite -->
+      <div class="service-card reveal">
+        <div class="service-card__tier">QoE Lite</div>
+        <h3>Quick Diligence</h3>
+        <div class="service-card__price">$2,500 <span>flat</span></div>
+        <p class="service-card__desc">Best for sub-$1M deals with clean books and no red flags.</p>
+        <ul class="service-card__features">
+          <li>2 years P&L + tax return review</li>
+          <li>Normalized EBITDA calculation</li>
+          <li>Owner add-back analysis</li>
+          <li>Revenue quality summary</li>
+          <li>6–10 page written report</li>
+          <li>30-min debrief call</li>
+          <li>7–10 business day turnaround</li>
+        </ul>
+        <a href="#contact" class="btn btn--outline service-card__cta">Get Started</a>
+      </div>
+
+      <!-- Standard QoE -->
+      <div class="service-card service-card--featured reveal">
+        <div class="service-card__tier">Standard QoE</div>
+        <h3>Full Due Diligence</h3>
+        <div class="service-card__price">$4,500 <span>flat</span></div>
+        <p class="service-card__desc">Best for $1M–$3M deals. Most ETA and SBA-backed acquisitions.</p>
+        <ul class="service-card__features">
+          <li>3 years P&L, balance sheet + tax returns</li>
+          <li>Full normalized EBITDA bridge</li>
+          <li>Revenue quality + customer concentration</li>
+          <li>All owner add-backs and one-time expenses</li>
+          <li>Working capital summary</li>
+          <li>Risk flags and red flags section</li>
+          <li>15–25 page written report</li>
+          <li>60-min debrief call</li>
+          <li>10–15 business day turnaround</li>
+        </ul>
+        <a href="#contact" class="btn btn--primary service-card__cta">Get Started</a>
+      </div>
+
+      <!-- Comprehensive QoE -->
+      <div class="service-card reveal">
+        <div class="service-card__tier">Comprehensive QoE</div>
+        <h3>Institutional Quality</h3>
+        <div class="service-card__price">$7,500 <span>flat</span></div>
+        <p class="service-card__desc">Best for $3M–$10M deals, complex financials, multiple entities.</p>
+        <ul class="service-card__features">
+          <li>Everything in Standard QoE</li>
+          <li>Monthly trend analysis (TTM + 2 yrs)</li>
+          <li>Customer aging + vendor concentration</li>
+          <li>Employee/compensation schedule review</li>
+          <li>Working capital peg recommendation</li>
+          <li>KPI analysis and benchmarking</li>
+          <li>25–40 page written report</li>
+          <li>90-min debrief + follow-up session</li>
+          <li>15–20 business day turnaround</li>
+        </ul>
+        <a href="#contact" class="btn btn--outline service-card__cta">Get Started</a>
+      </div>
+
+    </div>
+
+    <!-- Additional services -->
+    <div style="margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 800px;">
+      <div class="problem-card reveal">
+        <h3 style="font-size:1rem; margin-bottom:8px;">Advisory Business Valuations</h3>
+        <p style="font-size:.9rem; color:var(--muted); margin-bottom:12px;">Indicative value estimates for transaction planning, offer benchmarking, or exit planning. Not certified appraisals.</p>
+        <p style="font-weight:700; color:var(--navy); font-size:1.05rem;">$2,500 – $5,000</p>
+      </div>
+      <div class="problem-card reveal">
+        <h3 style="font-size:1rem; margin-bottom:8px;">Advisory Retainer</h3>
+        <p style="font-size:.9rem; color:var(--muted); margin-bottom:12px;">Monthly access while you search ($1,500/mo) or post-acquisition financial support ($3,500/mo). Minimum 3 months.</p>
+        <p style="font-weight:700; color:var(--navy); font-size:1.05rem;">$1,500 – $3,500 / month</p>
+      </div>
+    </div>
+
+    <div class="disclaimer-box mt-8">
+      <p><strong>Rush engagements available.</strong> Need results in half the standard time? Rush pricing adds 50% to the base fee. Contact us to confirm availability before engaging.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────────────────── -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about__photo">
+        <div class="about__photo-placeholder">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity=".3"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <p>Photo coming soon</p>
+        </div>
+      </div>
+      <div class="about__text">
+        <h4>About</h4>
+        <h2>You need a CPA on your side of the table.</h2>
+        <div class="about__credentials">
+          <span class="credential-badge">CPA</span>
+          <span class="credential-badge">CMA</span>
+          <span class="credential-badge">M&A Advisory</span>
+          <span class="credential-badge">QuickBooks Expert</span>
+        </div>
+        <p>I'm Matt Calnan, a Chartered Professional Accountant (CPA) and Certified Management Accountant (CMA) with deep experience in financial analysis, accounting systems, and transaction advisory.</p>
+        <p>I started Mainstreet Advisory because I kept seeing the same problem: ETA buyers in the $500K–$3M space couldn't access credentialed financial due diligence at a price that made sense for their deal size. The Big Four won't touch it. Budget shops don't have the credentials. That gap cost buyers real money.</p>
+        <p>My practice is built around one question: <strong>Are the earnings you're paying for real?</strong> Every engagement starts there and works outward.</p>
+        <p style="margin-top:24px;">
+          <strong>What I bring:</strong><br>
+          CPA-level rigor on the numbers. QuickBooks and accounting system expertise (I can read a messy GL where others get lost). Direct communication — I tell you what I found, what it means for your deal, and what to do about it.
+        </p>
+        <a href="#contact" class="btn btn--primary mt-8">Work with Matt</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ───────────────────────────────────────────── -->
+<section class="section section--alt" id="process">
+  <div class="container center">
+    <h4>How It Works</h4>
+    <h2>From inquiry to report in four steps.</h2>
+    <p class="lead" style="margin-top:16px;">We keep it simple. You focus on your deal — we handle the financial analysis.</p>
+
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="process-step__num">1</div>
+        <h3>Scoping Call</h3>
+        <p>15 minutes. Tell me about the deal — size, complexity, timeline. I'll recommend the right service tier and confirm turnaround availability.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-step__num">2</div>
+        <h3>Engagement & Deposit</h3>
+        <p>Engagement letter signed, 50% deposit paid. I send you a document request checklist — standard 10-item list, usually completed in 1–2 days.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-step__num">3</div>
+        <h3>Analysis</h3>
+        <p>I do the work. No check-ins unless I find something material that requires your input. You'll hear from me when the report is ready.</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="process-step__num">4</div>
+        <h3>Report & Debrief</h3>
+        <p>Receive the written report, pay the balance, then we walk through findings on a call. You'll know exactly what you're buying.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHO IT'S FOR ──────────────────────────────────────── -->
+<section class="section section--navy">
+  <div class="container">
+    <h4 style="color:rgba(196,147,74,.9);">Who We Work With</h4>
+    <h2 style="color:var(--white); max-width:600px;">Built for serious acquisition entrepreneurs.</h2>
+
+    <div class="audience-grid" style="margin-top:48px;">
+      <div class="audience-card reveal">
+        <div class="audience-card__tag">ETA Buyers</div>
+        <h3>Self-Funded Searchers</h3>
+        <p>You've been searching for 6–18 months and you're approaching LOI. You've reviewed the CIM and the P&Ls but you need a CPA to validate what the seller is telling you before you commit.</p>
+      </div>
+      <div class="audience-card reveal">
+        <div class="audience-card__tag">SBA Borrowers</div>
+        <h3>SBA 7(a) Acquisition Buyers</h3>
+        <p>You're financing with an SBA loan and your lender is going to want financial verification anyway. Get a proper QoE report upfront — not a last-minute scramble during underwriting.</p>
+      </div>
+      <div class="audience-card reveal">
+        <div class="audience-card__tag">First-Time Buyers</div>
+        <h3>First Business Acquisition</h3>
+        <p>You're not a professional acquirer — you're buying one business to own and operate. That makes quality diligence more important, not less. I explain every finding in plain English.</p>
+      </div>
+      <div class="audience-card reveal">
+        <div class="audience-card__tag">Experienced Buyers</div>
+        <h3>Repeat Acquirers & Operators</h3>
+        <p>You know what you're doing but you want an independent CPA running the numbers. You've seen deals go sideways and you're not willing to skip diligence on a deal this size.</p>
+      </div>
+    </div>
+
+    <div class="disclaimer-box mt-8" style="border-color:rgba(255,255,255,.15); background:rgba(255,255,255,.04); border-left-color:var(--gold);">
+      <p style="color:rgba(255,255,255,.55);">We also work with <strong style="color:rgba(255,255,255,.8);">business brokers</strong> whose buyers need diligence support, <strong style="color:rgba(255,255,255,.8);">SBA lenders</strong> looking for better-prepared borrowers, and <strong style="color:rgba(255,255,255,.8);">M&A attorneys</strong> who need a CPA partner on the financial side of small deals.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ───────────────────────────────────────────────── -->
+<section class="section" id="faq">
+  <div class="container center">
+    <h4>Frequently Asked Questions</h4>
+    <h2>Questions people ask before engaging.</h2>
+
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I really need a QoE for a small acquisition?
+          <span class="faq-q__icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a__inner">Yes — especially for a smaller acquisition. At a 4× EBITDA multiple, every $10,000 of adjusted earnings changes the price by $40,000. A $2,500 report that finds $75,000 in overstated earnings saves you $300,000. The math isn't close. Most buyers who've been through a deal without QoE and had problems wish they hadn't skipped it.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          My broker says the deal is clean. Do I still need this?
+          <span class="faq-q__icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a__inner">Yes. The broker is paid when the deal closes. They are not on your side of the table — and that's not a criticism, it's the structure. A broker who says "the deal is clean" is telling you what they believe, but they haven't done a financial analysis. You need your own CPA reviewing the numbers before you commit to a purchase price.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I use your report for SBA financing?
+          <span class="faq-q__icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a__inner">Yes. SBA 7(a) lenders require financial analysis and an earnings recast for acquisition loans. Our Standard and Comprehensive QoE reports are structured to include the normalized earnings documentation SBA lenders look for. That said, every lender has slightly different requirements — check with your specific lender about their documentation expectations before engaging.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What if the seller won't provide 3 years of financials?
+          <span class="faq-q__icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a__inner">A seller who won't provide 3 years of tax returns and financial statements to a serious buyer post-LOI is a significant red flag. We can work with what's available and flag what's missing, but there are minimums below which a meaningful QoE isn't possible. If you're in this situation, reach out — we'll tell you what analysis is and isn't feasible with the available data.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Are you an audit firm? Is this an audit?
+          <span class="faq-q__icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a__inner">No. Mainstreet Advisory provides advisory and analytical services. Our reports are not audits, reviews, or compilations of financial statements. We analyze the financials provided, identify adjustments, and give you an informed view of the business's true economic earnings. This is the same type of analysis that private equity firms do when they acquire businesses — it's analytical, not attestation.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What do you need from me to get started?
+          <span class="faq-q__icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a__inner">After a brief scoping call, I send you a document request list. Standard items: 3 years of P&L and balance sheets (QuickBooks export preferred), 3 years of business tax returns, 12 months of bank statements, and the CIM or financial summary from the broker. Sellers with organized records can usually get us everything within 1–2 business days. We start the clock when we have a materially complete document set.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you work with Canadian buyers acquiring US businesses?
+          <span class="faq-q__icon">+</span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a__inner">Yes. Canadian buyers acquiring US businesses are a growing segment of the ETA community. We understand the cross-border dynamics and can flag any considerations relevant to your situation. All fees are in USD.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ───────────────────────────────────────────── -->
+<section class="section section--alt" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h4>Get in Touch</h4>
+        <h2>Let's talk about your deal.</h2>
+        <p>Tell me about the acquisition you're working on. I'll confirm whether I can help and which service tier fits — usually within 24 hours.</p>
+
+        <div class="contact-detail">
+          <div class="contact-detail__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div style="font-size:.8rem; color:var(--muted); margin-bottom:2px;">Email</div>
+            <a href="mailto:matt@mainstreetfirm.com" class="fw-600">matt@mainstreetfirm.com</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div style="font-size:.8rem; color:var(--muted); margin-bottom:2px;">Location</div>
+            <span class="fw-600">Serving clients across North America</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail__icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div>
+            <div style="font-size:.8rem; color:var(--muted); margin-bottom:2px;">LinkedIn</div>
+            <a href="https://linkedin.com/in/mattcalnan" target="_blank" rel="noopener" class="fw-600">linkedin.com/in/mattcalnan</a>
+          </div>
+        </div>
+
+        <div class="disclaimer-box" style="margin-top:32px;">
+          <p>All services are advisory in nature. Reports are not audits, reviews, or compilations. Matt Calnan holds a CPA designation (Alberta, Canada) and a CMA designation. Advisory consulting services do not require US CPA licensure.</p>
+        </div>
+      </div>
+
+      <div class="contact-form-card">
+        <h3 style="margin-bottom:8px;">Tell us about your deal</h3>
+        <p style="font-size:.9rem; color:var(--muted); margin-bottom:28px;">We respond within 24 hours, usually faster.</p>
+
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Matt Smith" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="matt@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="deal-size">Approximate Deal Size</label>
+            <select id="deal-size" name="deal-size">
+              <option value="">Select a range</option>
+              <option>$500K – $1M</option>
+              <option>$1M – $2M</option>
+              <option>$2M – $3M</option>
+              <option>$3M – $5M</option>
+              <option>$5M – $10M</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="service">Service Interested In</label>
+            <select id="service" name="service">
+              <option value="">Select a service</option>
+              <option>Buy-Side QoE / Due Diligence</option>
+              <option>Advisory Business Valuation</option>
+              <option>Sell-Side Exit Preparation</option>
+              <option>Advisory Retainer</option>
+              <option>Not sure — need guidance</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell me about your deal</label>
+            <textarea id="message" name="message" placeholder="What industry? What's your timeline? Any specific concerns about the financials?"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary form-submit">Send Message →</button>
+        </form>
+        <div id="form-success" style="display:none; text-align:center; padding:32px 0;">
+          <div style="font-size:2rem; margin-bottom:12px;">✓</div>
+          <h3 style="color:var(--navy); margin-bottom:8px;">Message received.</h3>
+          <p style="color:var(--muted); font-size:.95rem;">We'll be in touch within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 52" fill="none" style="height:42px; width:auto;">
+          <rect x="0" y="29" width="8" height="19" rx="1.5" fill="#C4934A"/>
+          <rect x="11" y="20" width="8" height="28" rx="1.5" fill="#C4934A"/>
+          <rect x="22" y="9" width="8" height="39" rx="1.5" fill="rgba(255,255,255,0.8)"/>
+          <text x="40" y="30" font-family="Georgia,'Times New Roman',serif" font-size="18" font-weight="700" fill="rgba(255,255,255,0.9)" letter-spacing="3">MAINSTREET</text>
+          <rect x="40" y="34" width="236" height="1" fill="#C4934A" opacity="0.5"/>
+          <text x="42" y="47" font-family="Georgia,'Times New Roman',serif" font-size="11" fill="#C4934A" letter-spacing="5">ADVISORY</text>
+        </svg>
+        <p>CPA-led financial due diligence and Quality of Earnings reports for acquisition entrepreneurs. Serving clients across North America.</p>
+        <p style="margin-top:12px; font-size:.82rem;">Matt Calnan, CPA, CMA</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Buy-Side QoE Reports</a></li>
+          <li><a href="#services">Advisory Valuations</a></li>
+          <li><a href="#services">Sell-Side Preparation</a></li>
+          <li><a href="#services">Advisory Retainer</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Matt</a></li>
+          <li><a href="#process">How It Works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-disclaimer">
+        Mainstreet Advisory provides financial advisory and analytical services only. Reports are prepared for advisory purposes and do not constitute an audit, review, or compilation of financial statements as defined under GAAP, SSARS, or any applicable auditing or professional standards. Services do not constitute investment, legal, or tax advice. Matt Calnan holds a CPA designation issued by CPA Alberta and a CMA designation. Advisory consulting services do not require US state CPA licensure.
+      </p>
+      <p class="footer-copy" style="color:rgba(255,255,255,.35);">© 2026 Mainstreet Advisory. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ── SCRIPTS ────────────────────────────────────────────── -->
+<script>
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Mobile menu (placeholder — nav links hidden on mobile)
+  function toggleMenu() {
+    const links = document.querySelector('.nav__links');
+    const cta = document.querySelector('.nav__cta');
+    if (links) {
+      const isShown = links.style.display === 'flex';
+      links.style.display = isShown ? 'none' : 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '72px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'var(--white)';
+      links.style.padding = '16px 24px';
+      links.style.borderBottom = '1px solid var(--border)';
+      links.style.boxShadow = 'var(--shadow-md)';
+      links.style.gap = '16px';
+    }
+  }
+
+  // Form submit (demo — no real backend)
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const dealSize = form['deal-size'].value;
+    const service = form.service.value;
+    const message = form.message.value;
+
+    // In production: send to Formspree, Netlify Forms, or your backend
+    // For now: compose a mailto link
+    const subject = encodeURIComponent(`QoE Inquiry from ${name} — ${dealSize || 'Deal size TBD'}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nDeal Size: ${dealSize || 'N/A'}\nService: ${service || 'N/A'}\n\nMessage:\n${message}`
+    );
+    window.location.href = `mailto:matt@mainstreetfirm.com?subject=${subject}&body=${body}`;
+
+    form.style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
