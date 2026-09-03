@@ -875,7 +875,7 @@
       <div class="problem-card reveal">
         <h3 style="font-size:1rem; margin-bottom:8px;">Advisory Business Valuations</h3>
         <p style="font-size:.9rem; color:var(--muted); margin-bottom:12px;">Indicative value estimates for transaction planning, offer benchmarking, or exit planning. Not certified appraisals.</p>
-        <p style="font-weight:700; color:var(--navy); font-size:1.05rem;">$2,500 – $5,000</p>
+        <p style="font-weight:700; color:var(--navy); font-size:1.05rem;">$3,500 – $7,500</p>
       </div>
       <div class="problem-card reveal">
         <h3 style="font-size:1rem; margin-bottom:8px;">Advisory Retainer</h3>
@@ -1275,7 +1275,9 @@
     btn.disabled = true;
     var data = {};
     new FormData(form).forEach(function (v, k) { data[k] = v; });
-    fetch('/api/contact', {
+    data.brand = 'mainstreet';
+    // Shared Calnan form handler (Resend); switch back to '/api/contact' once this project has RESEND_API_KEY.
+    fetch('https://www.caprateadvisory.com/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data)
