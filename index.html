@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mainstreet Advisory | Financial Due Diligence for Business Acquisitions</title>
@@ -668,6 +669,8 @@
     /* ─── SCROLL REVEAL PLACEHOLDERS ────────────────────────── */
     .reveal { opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
     .reveal.visible { opacity: 1; transform: none; }
+    html.no-js .reveal, html.reveal-all .reveal { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
   </style>
 </head>
 <body>
@@ -1225,7 +1228,7 @@
     </div>
     <div class="footer-bottom">
       <p class="footer-disclaimer">Mainstreet Advisory provides analytical and advisory services only. Reports are not audits, reviews, or compilations of financial statements under GAAP or PCAOB standards. Findings are based solely on information provided by clients and are not independently verified. Mainstreet Advisory is not a registered investment adviser and does not provide investment advice. Nothing on this site constitutes legal, tax, or regulatory advice.</p>
-      <p class="footer-copy">© 2025 Mainstreet Advisory. All rights reserved.</p>
+      <p class="footer-copy">© 2026 Mainstreet Advisory. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -1263,6 +1266,8 @@
     entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); } });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  // Safety: if the observer never fires (some in-app browsers, preview renderers), show everything after 1.5s.
+  setTimeout(function () { document.documentElement.classList.add('reveal-all'); }, 1500);
 
   // ── CONTACT FORM ─────────────────────────────────────────
   function handleSubmit(e) {
