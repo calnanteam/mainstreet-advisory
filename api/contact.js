@@ -48,7 +48,7 @@ module.exports = async function handler(req, res) {
       subject: 'Thanks for reaching out — Mainstreet Advisory',
       html: '<p>Hi ' + esc(name) + ',</p>'
         + '<p>Thanks for telling us about your deal. I have your details and will follow up within one business day with next steps and a scope for the financial due diligence you need.</p>'
-        + '<p>If it is time-sensitive, reply to this email or book a call directly: <a href="https://calendly.com/mattcalnan">calendly.com/mattcalnan</a>.</p>'
+        + '<p>If it is time-sensitive, reply to this email or book a call directly: <a href="https://calendly.com/calnanreg/mainstreet-advisory-discovery-call">book a 15-minute scoping call</a>.</p>'
         + '<p>Best,<br>Matt Calnan, CPA, CMA<br>Mainstreet Advisory<br>www.mainstreetfirm.com</p>'
     });
     return res.status(200).json({ success: true });
