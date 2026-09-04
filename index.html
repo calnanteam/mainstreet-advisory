@@ -1277,9 +1277,7 @@
     btn.disabled = true;
     var data = {};
     new FormData(form).forEach(function (v, k) { data[k] = v; });
-    data.brand = 'mainstreet';
-    // Shared Calnan form handler (Resend); switch back to '/api/contact' once this project has RESEND_API_KEY.
-    fetch('https://www.caprateadvisory.com/api/contact', {
+    fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(data)
