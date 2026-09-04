@@ -26,7 +26,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const notifyRes = await send({
-      from: 'Mainstreet Advisory <matt@calnan.co>',
+      from: 'Mainstreet Advisory <notifications@mail.mainstreetfirm.com>',
       to: ['matt@calnan.co'],
       reply_to: email,
       subject: 'Contact Form — mainstreetfirm.com: ' + name + ' (' + dealSize + ')',
@@ -43,7 +43,7 @@ module.exports = async function handler(req, res) {
       return res.status(500).json({ error: 'Email send failed' });
     }
     await send({
-      from: 'Matt Calnan, CPA <matt@calnan.co>',
+      from: 'Matt Calnan, CPA <notifications@mail.mainstreetfirm.com>',
       to: [email],
       subject: 'Thanks for reaching out — Mainstreet Advisory',
       html: '<p>Hi ' + esc(name) + ',</p>'
