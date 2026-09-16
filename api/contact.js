@@ -38,6 +38,7 @@ module.exports = async function handler(req, res) {
 
     const name = (body.name || '').trim();
     const email = (body.email || '').trim();
+    const phone = (body.phone || '').trim();
     const dealSize = body['deal-size'] || body.dealSize || 'Not specified';
     const service = body.service || 'Not specified';
     const message = (body.message || '').trim();
@@ -62,6 +63,7 @@ module.exports = async function handler(req, res) {
                   html: '<h2>New deal inquiry — Mainstreet Advisory</h2>'
                     + '<p><strong>Name:</strong> ' + esc(name) + '</p>'
                     + '<p><strong>Email:</strong> ' + esc(email) + '</p>'
+                    + '<p><strong>Mobile:</strong> ' + esc(phone || 'Not provided') + '</p>'
                     + '<p><strong>Deal size:</strong> ' + esc(dealSize) + '</p>'
                     + '<p><strong>Service:</strong> ' + esc(service) + '</p>'
                     + '<p><strong>Message:</strong><br>' + esc(message).replace(/\n/g, '<br>') + '</p>'
