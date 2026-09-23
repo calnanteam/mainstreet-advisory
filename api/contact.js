@@ -41,6 +41,7 @@ module.exports = async function handler(req, res) {
     const phone = (body.phone || '').trim();
     const dealSize = body['deal-size'] || body.dealSize || 'Not specified';
     const service = body.service || 'Not specified';
+    const referralSource = body['referral-source'] || body.referralSource || 'Not specified';
     const message = (body.message || '').trim();
     if (!name || !email) return res.status(400).json({ error: 'Missing required fields' });
 
@@ -66,6 +67,7 @@ module.exports = async function handler(req, res) {
                     + '<p><strong>Mobile:</strong> ' + esc(phone || 'Not provided') + '</p>'
                     + '<p><strong>Deal size:</strong> ' + esc(dealSize) + '</p>'
                     + '<p><strong>Service:</strong> ' + esc(service) + '</p>'
+                    + '<p><strong>How they heard about us:</strong> ' + esc(referralSource) + '</p>'
                     + '<p><strong>Message:</strong><br>' + esc(message).replace(/\n/g, '<br>') + '</p>'
           });
           if (!notifyRes.ok) {
