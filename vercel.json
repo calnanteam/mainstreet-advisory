@@ -1,6 +1,3 @@
 {
-  "cleanUrls": true,
-  "rewrites": [
-    { "source": "/partners/:src(li|rd|campus|jobs)", "destination": "/partners" }
-  ]
+  "cleanUrls": true
 }

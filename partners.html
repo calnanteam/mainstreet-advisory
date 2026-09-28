@@ -137,11 +137,11 @@
 
 <section class="gp-hero">
   <div class="container">
-    <h4>Growth Partner Program</h4>
+    <h4>Growth Partner Program &middot; Remote / Work from home</h4>
     <h1>Open the door. Earn 10% of what we collect.</h1>
     <p class="lede">Mainstreet Advisory runs Quality of Earnings and financial due diligence for people buying and selling businesses worth $500K to $50M. We're adding a small group of independent Growth Partners who find those buyers and sellers and introduce them to us. You start the conversation. We do the work.</p>
     <a class="btn btn--gold apply-link" href="#apply">Apply now</a>
-    <p class="hero-note">Remote. Flexible hours. Open globally. Students welcome.</p>
+    <p class="hero-note">100% remote, work from home. Full-time or part-time, your hours. Open globally. Perfect for students.</p>
   </div>
 </section>
 
@@ -182,7 +182,8 @@
     <ul>
       <li>Strong written and spoken English. Spanish is a plus.</li>
       <li>A LinkedIn profile (required). If you don't have one, create it before you apply.</li>
-      <li>At least 5 hours a week.</li>
+      <li>At least 5 hours a week. Go full-time if you want to; there's no cap on what you can earn.</li>
+      <li>Students: this is built for you. Work from your laptop around classes, build real B2B sales experience and a track record with a financial due diligence firm.</li>
       <li>Either a network of business owners, buyers or deal people, or real skill at personalized outreach. Students and early-career people are welcome.</li>
     </ul>
     <p class="fine">Not eligible: employees, officers or agents of banks or lenders; people working at CPA, bookkeeping or fractional CFO firms; licensed or regulated professionals such as lawyers, business or real estate brokers, and financial or insurance advisors.</p>
@@ -198,7 +199,7 @@
     <h2>Questions</h2>
     <p><strong>Do I need to know accounting?</strong><br>No. You need to explain what we do in plain language. We train you on that.</p>
     <p><strong>Does it cost anything?</strong><br>No. Never.</p>
-    <p><strong>Where can I work from?</strong><br>Anywhere. You're responsible for your own taxes where you live.</p>
+    <p><strong>Where can I work from?</strong><br>Anywhere. It's 100% remote, work from home. You're responsible for your own taxes where you live.</p>
     <p><strong>Is this a job?</strong><br>No. It's an independent contractor arrangement. You set your own hours.</p>
 
     <div class="apply" id="apply">
@@ -210,8 +211,7 @@
 </section>
 <script>
   (function(){
-    var m = location.pathname.match(/^\/partners\/([a-z0-9-]+)/);
-    var src = m ? m[1] : 'direct';
+    var src = (new URLSearchParams(location.search).get('src') || 'direct').toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,30) || 'direct';
     try { if (window.gtag) gtag('event','partner_page_view',{partner_source:src}); } catch(e){}
     document.querySelectorAll('.apply-link[target]').forEach(function(a){
       a.addEventListener('click', function(){ try { gtag('event','partner_apply_click',{partner_source:src}); } catch(e){} });
