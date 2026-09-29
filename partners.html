@@ -101,6 +101,19 @@
     .gp td { padding: 10px 12px; border-bottom: 1px solid rgba(27,43,74,.12); background: #fff; }
     .apply { background: #fff; border: 1px solid var(--gold); border-radius: 8px; padding: 28px; margin-top: 56px; text-align: center; }
     .apply h2 { margin-top: 0; }
+    .calc { background: #fff; border: 1px solid var(--gold); border-radius: 8px; padding: 22px 24px; margin: 10px 0 22px; }
+    .calc h3 { font-family: var(--serif); color: var(--navy); font-size: 1.15rem; margin: 0 0 4px; }
+    .calc .calc__sub { font-size: .88rem; color: rgba(44,44,44,.7); margin: 0 0 16px; }
+    .calc__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px 20px; }
+    .calc label { display: block; font-size: .82rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .calc input[type=number] { width: 100%; padding: 9px 10px; border: 1px solid #c9ced8; border-radius: 6px; font-size: 1rem; box-sizing: border-box; }
+    .calc input[type=range] { width: 100%; accent-color: var(--gold); }
+    .calc__out { margin-top: 18px; background: var(--navy); color: #fff; border-radius: 8px; padding: 16px 18px; }
+    .calc__out div { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; font-size: .95rem; }
+    .calc__out .calc__total { border-top: 1px solid rgba(255,255,255,.25); margin-top: 6px; padding-top: 10px; font-size: 1.15rem; font-weight: 700; color: var(--gold); }
+    .calc__note { font-size: .82rem; color: rgba(44,44,44,.7); margin: 12px 0 0; }
+    .calc__hint { display: block; font-size: .76rem; color: rgba(44,44,44,.7); margin-top: 4px; }
+    .calc__btn { background: #fff; color: var(--navy); border: 1px solid var(--navy); border-radius: 6px; padding: 8px 14px; font-size: .85rem; font-weight: 600; cursor: pointer; margin-top: 14px; }
     @media (max-width: 600px) { .gp-hero h1 { font-size: 2rem; } .earn { flex-direction: column; text-align: center; } }
 </style>
 </head>
@@ -141,7 +154,7 @@
     <h1>Open the door. Earn 10% of what we collect.</h1>
     <p class="lede">Mainstreet Advisory runs Quality of Earnings and financial due diligence for people buying and selling businesses worth $500K to $50M. We're adding a small group of independent Growth Partners who find those buyers and sellers and introduce them to us. You start the conversation. We do the work.</p>
     <a class="btn btn--gold apply-link" href="#apply">Apply now</a>
-    <p class="hero-note">100% remote, work from home. Full-time or part-time, your hours. Open globally. Perfect for students.</p>
+    <p class="hero-note">100% remote, work from home. Full-time or part-time, your hours. Open globally. Students welcome.</p>
   </div>
 </section>
 
@@ -156,33 +169,90 @@
       <li>Find people buying or selling a business: owners getting ready to sell, search funders, first-time buyers, and the advisors around them.</li>
       <li>Start a real conversation. LinkedIn, email, phone, your own network, online communities.</li>
       <li>Register the prospect with us before you introduce them, so nobody gets contacted twice.</li>
-      <li>Make a warm introduction and join the first meeting. We take it from there: scope, pricing and all of the work.</li>
+      <li>Once a prospect is interested, introduce them to our team and join the first meeting. We take it from there: scope, pricing and all of the work.</li>
     </ul>
     <p>You don't need an accounting background. You need to understand what we offer and be good at starting conversations.</p>
 
     <h2>What you earn</h2>
     <div class="earn">
       <div class="earn__big">10%</div>
-      <div class="earn__text">of the fees Mainstreet collects on every engagement you bring in. No cap.</div>
+      <div class="earn__text">of the fees Mainstreet actually collects from an engagement that results from your eligible introduction. No base pay. If no fee is collected, you earn $0.</div>
     </div>
     <table>
-      <tr><th>Engagement</th><th>Typical fee</th><th>You earn</th></tr>
+      <tr><th>Illustration only</th><th>Fee collected</th><th>10% commission</th></tr>
       <tr><td>Smaller deal review</td><td>$3,500</td><td>$350</td></tr>
       <tr><td>Standard Quality of Earnings</td><td>$7,500</td><td>$750</td></tr>
       <tr><td>Larger or more complex deal</td><td>$12,500+</td><td>$1,250+</td></tr>
     </table>
+    <div class="calc" id="calc">
+      <h3>Try your own numbers</h3>
+      <p class="calc__sub">Enter your own assumptions to see how the 10% formula works. This is not a forecast, and you may earn $0.</p>
+      <div class="calc__grid">
+        <div>
+          <label for="c-fee">Fee Mainstreet collects per engagement ($)</label>
+          <input type="number" id="c-fee" min="0" max="100000" step="250" placeholder="e.g. 3500" inputmode="decimal">
+        </div>
+        <div>
+          <label for="c-n">Engagements that result in collected fees</label>
+          <input type="number" id="c-n" min="0" max="50" step="1" placeholder="e.g. 1" inputmode="numeric">
+        </div>
+        <div>
+          <label for="c-dep">Deposit share of each fee (%)</label>
+          <input type="number" id="c-dep" min="0" max="100" step="5" placeholder="e.g. 50" inputmode="numeric">
+        </div>
+        <div>
+          <label for="c-rep">Eligible repeat-work fees collected ($, optional)</label>
+          <input type="number" id="c-rep" min="0" max="100000" step="250" placeholder="0" inputmode="decimal">
+          <span class="calc__hint">Repeat work counts only if the same client you introduced hires us again within 12 months.</span>
+        </div>
+      </div>
+      <p><button type="button" class="calc__btn" id="c-ill">Fill in an illustration ($3,500, 1 engagement, 50% deposit)</button></p>
+      <div class="calc__out" aria-live="polite">
+        <div><span>Total fees Mainstreet collects</span><span id="o-fees">Enter your numbers</span></div>
+        <div><span>Paid within 3 business days of receiving the deposit</span><span id="o-p1">&ndash;</span></div>
+        <div><span>Paid within 3 business days of the engagement finishing and final payment received</span><span id="o-p2">&ndash;</span></div>
+        <div class="calc__total"><span>Your commission (10% of fees received)</span><span id="o-tot">&ndash;</span></div>
+      </div>
+      <p class="calc__note">The calculator does not predict how many introductions turn into engagements, or how long that takes. That depends on you and on the prospects, and can be none. Commission is paid only on fees Mainstreet actually receives. Partial payments, refunds and disputes are handled under the partner agreement, so amounts shown here may differ from what is paid.</p>
+    </div>
+    <script>
+    (function(){
+      var $=function(i){return document.getElementById(i)};
+      var fmt=function(n){return '$'+Math.round(n).toLocaleString('en-US')};
+      var used=false;
+      function num(id){var v=parseFloat($(id).value);return isFinite(v)&&v>0?v:0}
+      function has(id){return $(id).value!==''}
+      function calc(){
+        var fee=num('c-fee'),n=Math.floor(num('c-n')),rep=num('c-rep'),dep=Math.min(num('c-dep'),100)/100;
+        var ready=has('c-fee')&&has('c-n');
+        if(!ready){ $('o-fees').textContent='Enter your numbers'; $('o-p1').textContent='\u2013'; $('o-p2').textContent='\u2013'; $('o-tot').textContent='\u2013'; return; }
+        var base=fee*n, fees=base+rep, tot=fees*0.10;
+        $('o-fees').textContent=fmt(fees);
+        $('o-tot').textContent=fmt(tot);
+        if(has('c-dep')){
+          var p1=base*dep*0.10;
+          $('o-p1').textContent=fmt(p1);
+          $('o-p2').textContent=fmt(tot-p1);
+        } else { $('o-p1').textContent='Enter a deposit share'; $('o-p2').textContent='\u2013'; }
+      }
+      ['c-fee','c-n','c-rep','c-dep'].forEach(function(id){ $(id).addEventListener('input',function(){ calc(); if(!used){used=true; try{ if(window.gtag) gtag('event','partner_calc_used'); }catch(e){} } }); });
+      $('c-ill').addEventListener('click',function(){ $('c-fee').value=3500; $('c-n').value=1; $('c-dep').value=50; $('c-rep').value=''; calc(); });
+      calc();
+    })();
+    </script>
     <ul>
       <li><strong>Repeat work pays too.</strong> If a client you introduced hires us again within 12 months, you earn 10% on that work as well.</li>
-      <li><strong>Paid after we collect.</strong> Monthly statements, paid by bank transfer.</li>
-      <li><strong>For example,</strong> two introductions a month at a standard fee would be $1,500 a month in commission.</li>
+      <li><strong>What makes an introduction eligible.</strong> You register the prospect with us before you introduce them, you introduce them to our team and join the first meeting, and the prospect is not already a Mainstreet client or in active conversation with us. Commission applies only when that introduction leads to a signed engagement.</li>
+      <li><strong>When a fee counts as collected.</strong> Commission is calculated on fees Mainstreet has actually received from the client, not on quoted or invoiced amounts.</li>
+      <li><strong>When you get paid.</strong> After we collect. We pay by bank transfer in two parts. Commission on the deposit (10% of the deposit we actually receive) is paid within 3 business days of receiving it. The rest is paid within 3 business days after the engagement finishes and we receive the final payment. You get a statement with each payment. Attribution, partial-payment and dispute rules are in the partner agreement, which you can read before you accept.</li>
     </ul>
-    <p class="fine">This is an independent contractor role paid 100% on commission. There is no base pay, no hourly pay and no guaranteed earnings; what you earn depends entirely on engagements you bring in that we complete and collect. There is never any cost to join. Fees shown are typical ranges, not quotes. Mainstreet discloses referral arrangements to its clients.</p>
+    <p class="fine">The table shows how the 10% formula works. It is an illustration, not a prediction or a typical result, and you may earn nothing. This is an independent contractor role paid 100% on commission. There is no base pay, no hourly pay and no guaranteed earnings; what you earn depends entirely on engagements that result from your introductions and produce fees we actually collect. There is never any cost to join. Fee amounts shown are illustrative; actual client fees vary. Mainstreet discloses referral arrangements to its clients.</p>
 
     <h2>Who fits</h2>
     <ul>
       <li>Strong written and spoken English.</li>
       <li>A LinkedIn profile. It's required once you join, because it's how you'll reach people.</li>
-      <li>At least 5 hours a week. Go full-time if you want to; there's no cap on what you can earn.</li>
+      <li>At least 5 hours a week. Go full-time if you want to.</li>
       <li>Students: this is built for you. Work from your laptop around classes, build real B2B sales experience and a track record with a financial due diligence firm.</li>
       <li>Either a network of business owners, buyers or deal people, or real skill at personalized outreach. Students and early-career people are welcome.</li>
     </ul>
