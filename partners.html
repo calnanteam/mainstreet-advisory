@@ -116,6 +116,19 @@
     .calc__hint { display: block; font-size: .76rem; color: rgba(44,44,44,.7); margin-top: 4px; }
     .calc__btn { background: #fff; color: var(--navy); border: 1px solid var(--navy); border-radius: 6px; padding: 8px 14px; font-size: .85rem; font-weight: 600; cursor: pointer; margin-top: 14px; }
     @media (max-width: 600px) { .gp-hero h1 { font-size: 2rem; } .earn { flex-direction: column; text-align: center; } }
+    .gp-hero .hero-note--fine { font-size: .8rem; color: rgba(255,255,255,.55); margin-top: 10px; max-width: 640px; }
+    .nav__cta { display: none; }
+    .sticky-apply { display: none; }
+    @media (max-width: 700px) {
+      .gp-hero { padding: 36px 0 36px; }
+      .gp-hero h1 { font-size: 1.9rem; margin-bottom: 14px; }
+      .gp-hero .lede { font-size: 1rem; margin-bottom: 20px; }
+      .gp-hero .btn--gold { display: block; text-align: center; }
+      .sticky-apply { display: block; transform: translateY(110%); transition: transform .2s; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: rgba(27,43,74,.96); box-shadow: 0 -2px 10px rgba(0,0,0,.2); }
+      .sticky-apply.show { transform: translateY(0); }
+      .sticky-apply .btn { display: block; text-align: center; }
+      body { padding-bottom: 72px; }
+    }
 </style>
 </head>
 <body>
@@ -151,11 +164,12 @@
 
 <section class="gp-hero">
   <div class="container">
-    <h4>Growth Partner Program &middot; Remote / Work from home</h4>
-    <h1>Open the door. Earn 10% of what we collect.</h1>
-    <p class="lede">Mainstreet Advisory runs Quality of Earnings and financial due diligence for people buying and selling businesses worth $500K to $50M. We're adding a small group of independent Growth Partners who find those buyers and sellers and introduce them to us. You start the conversation. We do the work.</p>
-    <a class="btn btn--gold apply-link" href="#apply">Apply now</a>
-    <p class="hero-note">100% remote, work from home. Full-time or part-time, your hours. Open globally. Students welcome.</p>
+    <h4>Remote &middot; Work from home &middot; Students welcome</h4>
+    <h1>Work from home. Earn 10% of what we collect.</h1>
+    <p class="lede">You introduce business owners and buyers to Mainstreet Advisory, a financial due diligence firm. You start the conversation, our team does the work. Example: a $3,500 engagement pays you $350 (illustration only).</p>
+    <a class="btn btn--gold apply-link" data-loc="hero" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Ghsss_kksE-Km9cv_AOIgNxc0unGfpFMvSELWmsNI2pUMFBCVzlSVlc5NFhTNU9FWlZHODE3VjQ4MS4u" target="_blank" rel="noopener">Apply now</a>
+    <p class="hero-note">Takes about 10 minutes. No cost to join. 100% remote, your hours, open globally.</p>
+    <p class="hero-note hero-note--fine">Independent contractor role, paid on commission only. No base pay. You are paid when Mainstreet collects fees, and income is not guaranteed and may be $0.</p>
   </div>
 </section>
 
@@ -276,7 +290,7 @@
     <div class="apply" id="apply">
       <h2>Ready?</h2>
       <p>The application takes about 10 minutes and includes a short writing test. We read every one.</p>
-      <a class="btn btn--gold apply-link" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Ghsss_kksE-Km9cv_AOIgNxc0unGfpFMvSELWmsNI2pUMFBCVzlSVlc5NFhTNU9FWlZHODE3VjQ4MS4u" target="_blank" rel="noopener">Start your application</a>
+      <a class="btn btn--gold apply-link" data-loc="bottom" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Ghsss_kksE-Km9cv_AOIgNxc0unGfpFMvSELWmsNI2pUMFBCVzlSVlc5NFhTNU9FWlZHODE3VjQ4MS4u" target="_blank" rel="noopener">Start your application</a>
     </div>
   </div>
 </section>
@@ -287,6 +301,18 @@
     document.querySelectorAll('.apply-link[target]').forEach(function(a){
       a.addEventListener('click', function(){ try { gtag('event','partner_apply_click',{partner_source:src}); } catch(e){} });
     });
+  })();
+</script>
+
+<div class="sticky-apply" aria-label="Apply">
+  <a class="btn btn--gold apply-link" data-loc="sticky" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Ghsss_kksE-Km9cv_AOIgNxc0unGfpFMvSELWmsNI2pUMFBCVzlSVlc5NFhTNU9FWlZHODE3VjQ4MS4u" target="_blank" rel="noopener">Apply now</a>
+</div>
+
+<script>
+  (function(){
+    var bar=document.querySelector('.sticky-apply'), hero=document.querySelector('a[data-loc="hero"]');
+    if(!bar||!hero||!('IntersectionObserver' in window)){ if(bar){bar.classList.add('show');} return; }
+    new IntersectionObserver(function(es){ bar.classList.toggle('show', !es[0].isIntersecting); }).observe(hero);
   })();
 </script>
 
