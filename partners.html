@@ -129,9 +129,34 @@
       .sticky-apply .btn { display: block; text-align: center; }
       body { padding-bottom: 72px; }
     }
+
+    /* Track B (Outreach Setter) variant: shown only when ?src= starts with "reddit" */
+    .track-b { display: none; }
+    body.is-b .track-a { display: none !important; }
+    body.is-b section.track-b { display: block; }
+    body.is-b .sticky-apply.track-b { display: block; }
+    @media (min-width: 769px) { body.is-b .sticky-apply.track-b { display: none; } }
+    .qcall { background: #fff; border: 1px solid var(--gold); border-radius: 8px; padding: 16px 20px; margin: 8px 0 18px; font-size: .98rem; }
 </style>
 </head>
 <body>
+<script>
+  (function(){
+    var q = (new URLSearchParams(location.search).get('src') || '').toLowerCase();
+    if (q.indexOf('reddit') === 0) {
+      document.body.classList.add('is-b');
+      document.title = 'Outreach Setter | Mainstreet Advisory';
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      var src = (new URLSearchParams(location.search).get('src') || '').toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,40);
+      if (!src) return;
+      document.querySelectorAll('a.b-apply').forEach(function(a){
+        a.href = a.href + '&reea9f6dcc1354c4fb3c5bc50904430c8=' + encodeURIComponent(src);
+      });
+    });
+  })();
+</script>
+
 <nav class="nav">
   <div class="container">
     <div class="nav__inner">
@@ -162,7 +187,7 @@
   </div>
 </nav>
 
-<section class="gp-hero">
+<section class="gp-hero track-a">
   <div class="container">
     <h4>Remote &middot; Work from home &middot; Students welcome</h4>
     <h1>Work from home. Earn 10% of what we collect.</h1>
@@ -173,7 +198,7 @@
   </div>
 </section>
 
-<section class="gp">
+<section class="gp track-a">
   <div class="container content">
 
     <h2>What Mainstreet does</h2>
@@ -294,6 +319,76 @@
     </div>
   </div>
 </section>
+<section class="gp-hero track-b">
+  <div class="container">
+    <h4>Remote &middot; Independent contractor &middot; Outreach Setter</h4>
+    <h1>Book qualified calls. Earn $25 for each call held, plus $100 on a signed engagement.</h1>
+    <p class="lede">You start personal conversations on LinkedIn with business owners, buyers and brokers in the US and Canada, and book interested people on a call with our team. Mainstreet Advisory is a financial due diligence firm based in Alberta, Canada. Our team does all of the advisory work.</p>
+    <a class="btn btn--gold apply-link b-apply" data-loc="hero" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Ghsss_kksE-Km9cv_AOIgNxc0unGfpFMvSELWmsNI2pUQjIzWkdLWDc5UUxTM1ZYUjFaSk8wNjhVQi4u" target="_blank" rel="noopener">Apply now</a>
+    <p class="hero-note">A 2-minute application. Shortlisted applicants complete a short assessment, then a 15-minute intro call. No cost to join.</p>
+    <p class="hero-note hero-note--fine">Performance-based independent contractor work. No base pay, no guaranteed hours or income, and you may earn $0.</p>
+  </div>
+</section>
+
+<section class="gp track-b">
+  <div class="container content">
+
+    <h2>What Mainstreet does</h2>
+    <p>Before someone buys a business, they need to know if the earnings they are paying for hold up. Sellers need the same answer before they go to market. We run Quality of Earnings reviews: we analyze the quality and sustainability of a business's reported earnings before a transaction closes. Mainstreet is led by a Chartered Professional Accountant licensed in Alberta, Canada.</p>
+
+    <h2>What you do</h2>
+    <ul>
+      <li>Use your own real LinkedIn account to start one-to-one, personalized conversations with business owners, buyers and brokers in the US and Canada.</li>
+      <li>Get interested people booked on a call with our team. We take the call from there.</li>
+      <li>Low-volume, personalized outreach only: no bots, no automation, no mass messaging, no scraping, no shared logins. Stop contacting anyone who asks you to.</li>
+      <li>Optional approved message templates and a one-page pitch are provided. You do not need an accounting background.</li>
+    </ul>
+
+    <h2>What you earn</h2>
+    <div class="earn">
+      <div class="earn__big">$25</div>
+      <div class="earn__text">for each qualified call that is actually held, plus $100 more if that prospect engages Mainstreet and pays the required deposit. Paid in USD. Nothing is paid for messages sent. If no qualified call is held, you earn $0.</div>
+    </div>
+    <div class="qcall"><strong>What counts as a qualified call.</strong> A qualified call is a first call of at least 15 minutes, held with a Mainstreet principal, with a US or Canadian business owner or buyer who has a real or planned small-business transaction, or a broker actively working with those transactions, that the contractor sourced and booked through their own outreach and that was not already in Mainstreet's CRM, an active conversation or reserved to another partner when registered.</div>
+    <ul>
+      <li><strong>Attribution.</strong> The first contractor to register a prospect in the CRM is credited. A prospect Mainstreet already knows is a duplicate and is not paid.</li>
+      <li><strong>No-shows and cancellations.</strong> A prospect no-show does not qualify. If Mainstreet reschedules, payment is due when the rescheduled call is held. If Mainstreet cancels a confirmed qualifying call and does not reschedule it, the $25 is still paid.</li>
+      <li><strong>When you get paid.</strong> The $25 is paid weekly (Fridays) for calls held in the prior week. The $100 is paid within 3 business days after the deposit is received.</li>
+      <li><strong>Disclosure.</strong> Prospects are told in writing, before the call, that the person who introduced them may be paid by Mainstreet. You will not be paid for a call unless that disclosure was acknowledged.</li>
+      <li><strong>Disputes.</strong> Attribution disputes are reviewed against timestamped CRM and booking records. You have 7 days to submit supporting evidence, then you receive a written determination.</li>
+    </ul>
+    <p class="fine">The complete compensation and attribution terms are in the contractor agreement, which you will see before you start. This is an independent contractor role with no minimum hours, quotas or exclusivity. You use your own equipment and are responsible for your own applicable taxes and registrations, subject to any withholding or reporting Mainstreet is legally required to make. Income is not guaranteed and may be $0.</p>
+
+    <h2>Who fits</h2>
+    <ul>
+      <li>Strong written English and a LinkedIn profile.</li>
+      <li>Good at personalized, respectful outreach. No accounting background needed.</li>
+      <li>Applications are currently open to people in the Philippines, the US and Canada. Final onboarding is subject to jurisdiction and payment eligibility.</li>
+    </ul>
+    <p class="fine">Not eligible: employees, officers or agents of banks or lenders; people working at CPA, bookkeeping or fractional CFO firms; licensed or regulated professionals such as lawyers, business or real estate brokers, and financial or insurance advisors.</p>
+
+    <h2>How it works</h2>
+    <ol>
+      <li><strong>Apply.</strong> About 2 minutes. See our <a href="/partners-privacy">applicant privacy notice</a> first.</li>
+      <li><strong>Short assessment</strong> (shortlisted applicants): a 60-second audio or video answer plus a few written questions. Audio and video are scored the same. We assess communication relevant to the role, not appearance, accent or production quality. Need another format as an accommodation? Contact us.</li>
+      <li><strong>15-minute intro call</strong> with the founder.</li>
+      <li><strong>Sign the contractor agreement</strong> and complete a short training. No outreach starts before then.</li>
+    </ol>
+    <p class="fine">We use AI-assisted tools to help review applications. A person reviews every decline.</p>
+
+    <h2>Questions</h2>
+    <p><strong>Do I need to know accounting?</strong><br>No. You need to explain what we do in plain language. We train you on that.</p>
+    <p><strong>Does it cost anything?</strong><br>No. Never.</p>
+    <p><strong>Is this a job?</strong><br>No. It is an independent contractor arrangement with no minimum hours.</p>
+    <p><strong>Can I earn nothing?</strong><br>Yes. You are paid only for qualified calls that are held and, if applicable, for engagements that pay a deposit.</p>
+
+    <div class="apply">
+      <h2>Ready?</h2>
+      <p>The application takes about 2 minutes.</p>
+      <a class="btn btn--gold apply-link b-apply" data-loc="bottom" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Ghsss_kksE-Km9cv_AOIgNxc0unGfpFMvSELWmsNI2pUQjIzWkdLWDc5UUxTM1ZYUjFaSk8wNjhVQi4u" target="_blank" rel="noopener">Start your application</a>
+    </div>
+  </div>
+</section>
 <script>
   (function(){
     var src = (new URLSearchParams(location.search).get('src') || 'direct').toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,30) || 'direct';
@@ -304,13 +399,16 @@
   })();
 </script>
 
-<div class="sticky-apply" aria-label="Apply">
+<div class="sticky-apply track-b" aria-label="Apply">
   <a class="btn btn--gold apply-link" data-loc="sticky" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Ghsss_kksE-Km9cv_AOIgNxc0unGfpFMvSELWmsNI2pUMFBCVzlSVlc5NFhTNU9FWlZHODE3VjQ4MS4u" target="_blank" rel="noopener">Apply now</a>
+</div>
+<div class="sticky-apply track-a" aria-label="Apply">
+  <a class="btn btn--gold apply-link b-apply" data-loc="sticky" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Ghsss_kksE-Km9cv_AOIgNxc0unGfpFMvSELWmsNI2pUQjIzWkdLWDc5UUxTM1ZYUjFaSk8wNjhVQi4u" target="_blank" rel="noopener">Apply now</a>
 </div>
 
 <script>
   (function(){
-    var bar=document.querySelector('.sticky-apply'), hero=document.querySelector('a[data-loc="hero"]');
+    var tk=document.body.classList.contains('is-b')?'.track-b':'.track-a', bar=document.querySelector('.sticky-apply'+tk), hero=document.querySelector(tk+' a[data-loc="hero"]');
     if(!bar||!hero||!('IntersectionObserver' in window)){ if(bar){bar.classList.add('show');} return; }
     new IntersectionObserver(function(es){ bar.classList.toggle('show', !es[0].isIntersecting); }).observe(hero);
   })();
