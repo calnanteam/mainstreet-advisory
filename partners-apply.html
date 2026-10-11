@@ -182,9 +182,6 @@
     .opt input { margin-top: 5px; flex: none; }
     .opt:has(input:checked) { border-color: var(--gold); background: #fffaf2; }
     .opt:focus-within { outline: 2px solid var(--gold); outline-offset: 1px; }
-    .note { display: none; border-radius: 8px; padding: 14px 16px; margin: 4px 0 16px; font-size: .95rem; background: #fff7e8; border: 1px solid var(--gold); color: var(--navy); }
-    .note.show { display: block; }
-    .note a { font-weight: 700; }
     .gpform .btn--gold[disabled] { opacity: .55; cursor: not-allowed; }
     .gpform .btn--gold { width: 100%; text-align: center; }
     @media (min-width: 601px) { .gpform .btn--gold { width: auto; } }
@@ -268,24 +265,33 @@
         </select>
       </div>
 
-      <h2 class="sec">A few quick checks</h2>
-      <p class="sec-sub">These keep us compliant. Two clicks for most people.</p>
+      <h2 class="sec">A few things we would like to know</h2>
+      <p class="sec-sub">All optional, and nothing here disqualifies you. It just helps us have a better first conversation.</p>
 
-      <div class="field" role="radiogroup" aria-labelledby="q-screen">
-        <span class="opt-label" id="q-screen">Do any of these describe you? <span class="req">*</span></span>
-        <span class="hint">An employee, officer or agent of a bank or lender. Someone working at a CPA, bookkeeping or fractional CFO firm. A licensed or regulated professional, such as a lawyer, business or real estate broker, or financial or insurance advisor.</span>
-        <label class="opt"><input type="radio" name="screen" value="none" required> <span>No, none of these describe me</span></label>
-        <label class="opt"><input type="radio" name="screen" value="match"> <span>Yes, one or more do</span></label>
+      <div class="field" role="group" aria-labelledby="q-flags">
+        <span class="opt-label" id="q-flags">Anything we should know about your work?</span>
+        <span class="hint">Tick any that apply, or skip it. We will chat about it at the interview.</span>
+        <label class="opt"><input type="checkbox" name="flags" value="none"> <span>None of these apply</span></label>
+        <label class="opt"><input type="checkbox" name="flags" value="bank_lender"> <span>I work at or for a bank or lender</span></label>
+        <label class="opt"><input type="checkbox" name="flags" value="cpa_firm"> <span>I work at a CPA, bookkeeping or advisory firm</span></label>
+        <label class="opt"><input type="checkbox" name="flags" value="licensed"> <span>I'm a licensed or regulated professional (lawyer, broker, financial or insurance advisor)</span></label>
       </div>
-      <div class="note" id="note-screen" role="status" aria-live="polite">Thanks for being upfront. We cannot take applications from people in those roles because of rules around referral fees. If your situation is different, or you know a student who would be a great fit, email <a href="mailto:matt@calnan.co">matt@calnan.co</a>.</div>
 
       <div class="field" role="radiogroup" aria-labelledby="q-pay">
-        <span class="opt-label" id="q-pay">Does this work for you? <span class="req">*</span></span>
+        <span class="opt-label" id="q-pay">How does the pay structure sound?</span>
         <span class="hint">Commission only: 10% of the fees Mainstreet actually collects on work you bring in. No salary, no base pay, no expenses. About 5 hours a week or more. Income is not guaranteed and may be $0.</span>
-        <label class="opt"><input type="radio" name="pay" value="yes" required> <span>Yes, that works for me</span></label>
-        <label class="opt"><input type="radio" name="pay" value="no"> <span>Not right now</span></label>
+        <label class="opt"><input type="radio" name="pay" value="yes"> <span>Commission-only works for me</span></label>
+        <label class="opt"><input type="radio" name="pay" value="questions"> <span>I have questions</span></label>
       </div>
-      <div class="note" id="note-pay" role="status" aria-live="polite">No problem. This role only works as commission-only with a few hours a week, so it is not the right time. If that changes, come back and apply. Thanks for looking.</div>
+
+      <div class="field" role="group" aria-labelledby="q-interest">
+        <span class="opt-label" id="q-interest">Which parts of our group interest you?</span>
+        <span class="hint">Optional. Tick any. This just helps us understand what you are curious about.</span>
+        <label class="opt"><input type="checkbox" name="interest" value="mainstreet"> <span>Mainstreet Advisory (deal due diligence)</span></label>
+        <label class="opt"><input type="checkbox" name="interest" value="ailabs"> <span>Calnan AI Labs</span></label>
+        <label class="opt"><input type="checkbox" name="interest" value="caprate"> <span>CapRate Advisory (coming soon)</span></label>
+        <label class="opt"><input type="checkbox" name="interest" value="unsure"> <span>Not sure yet</span></label>
+      </div>
 
       <label class="check"><input type="checkbox" name="ack" value="yes" required> <span>I understand this is an independent contractor role, not employment. I am responsible for my own taxes, and my answers are accurate.</span></label>
 
@@ -342,29 +348,28 @@
     }
   })();
 
-  // Gentle knockouts: friendly note instead of a dead end; submit stays off.
-  var blocked = false;
-  function checkGates(){
-    var scr = (f.querySelector('input[name="screen"]:checked') || {}).value;
-    var pay = (f.querySelector('input[name="pay"]:checked') || {}).value;
-    document.getElementById('note-screen').classList.toggle('show', scr === 'match');
-    document.getElementById('note-pay').classList.toggle('show', pay === 'no');
-    blocked = (scr === 'match' || pay === 'no');
-    btn.disabled = blocked;
-  }
-  f.querySelectorAll('input[name="screen"], input[name="pay"]').forEach(function(r){ r.addEventListener('change', checkGates); });
+  // "None of these apply" is exclusive with the other work options (nothing blocks submission).
+  f.querySelectorAll('input[name="flags"]').forEach(function(c){
+    c.addEventListener('change', function(){
+      if (!c.checked) { return; }
+      f.querySelectorAll('input[name="flags"]').forEach(function(o){
+        if ((c.value === 'none') !== (o.value === 'none')) { o.checked = false; }
+      });
+    });
+  });
+  function checked(name){ return Array.prototype.map.call(f.querySelectorAll('input[name="' + name + '"]:checked'), function(i){ return i.value; }); }
 
   function showErr(t){ msg.textContent = t; msg.className = 'msg err'; }
 
   f.addEventListener('submit', function(e){
     e.preventDefault();
     msg.className = 'msg';
-    if (blocked) { return; }
-    if (!f.checkValidity()) { showErr('Please fill in the starred fields, answer both quick checks and tick the box.'); f.reportValidity(); return; }
+    if (!f.checkValidity()) { showErr('Please fill in the starred fields and tick the box at the bottom.'); f.reportValidity(); return; }
     var li = f.linkedin.value.trim();
     if (!/linkedin\.com\//i.test(li)) { showErr('Please paste your LinkedIn profile link (it should contain linkedin.com).'); f.linkedin.focus(); return; }
     setSource();
     var data = {}; new FormData(f).forEach(function(v,k){ data[k] = v; });
+    data.flags = checked('flags'); data.interest = checked('interest');
     data.elapsed = Date.now() - loadedAt;
     btn.disabled = true; btn.textContent = 'Sending...';
     fetch('/api/partners-apply', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
