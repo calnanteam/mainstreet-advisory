@@ -1,6 +1,7 @@
 // Mainstreet Advisory: Growth Partner application handler (Vercel serverless, Resend)
 // Same pattern as api/setter-round2.js and api/contact.js: origin check, honeypot,
 // notify Matt, confirm to the applicant. Added: minimum-fill-time trap.
+// Nothing blocks an applicant: screening answers are flags for Matt to review at interview.
 
 function isAllowedOrigin(req) {
     const check = (val) => {
@@ -40,17 +41,32 @@ module.exports = async function handler(req, res) {
         heard: v('heard', 80),
         source: v('source', 400),
         src: v('src', 80),
-        screen: v('screen', 20),
         pay: v('pay', 20),
         ack: v('ack', 20)
     };
+
+    // Optional multi-select answers. Only known values are kept; nothing here blocks an application.
+    const pick = (k, labels) => (Array.isArray(b[k]) ? b[k] : [b[k]]).map((x) => String(x == null ? '' : x)).filter((x) => labels[x]).map((x) => labels[x]);
+    const flagLabels = {
+        bank_lender: 'Works at or for a bank or lender',
+        cpa_firm: 'Works at a CPA, bookkeeping or advisory firm',
+        licensed: 'Licensed or regulated professional (lawyer, broker, financial or insurance advisor)'
+    };
+    const interestLabels = {
+        mainstreet: 'Mainstreet Advisory (deal due diligence)',
+        ailabs: 'Calnan AI Labs',
+        caprate: 'CapRate Advisory (coming soon)',
+        unsure: 'Not sure yet'
+    };
+    const flags = pick('flags', flagLabels);
+    if (f.pay === 'questions') flags.push('Has questions about the commission-only structure');
+    const interest = pick('interest', interestLabels);
 
     const required = ['name', 'email', 'location', 'school', 'linkedin', 'network', 'why'];
     if (required.some((k) => !f[k])) return res.status(400).json({ error: 'Missing required fields' });
     if (!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(f.email)) return res.status(400).json({ error: 'Invalid email' });
     if (!/linkedin\.com\//i.test(f.linkedin)) return res.status(400).json({ error: 'Invalid LinkedIn URL' });
-    // Knockouts are enforced here too, not just in the page.
-    if (f.screen !== 'none' || f.pay !== 'yes' || f.ack !== 'yes') return res.status(400).json({ error: 'Not eligible' });
+    // No eligibility knockouts: every complete application is accepted. Flags are reviewed at interview.
 
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) return res.status(500).json({ error: 'Missing RESEND_API_KEY' });
@@ -80,7 +96,9 @@ module.exports = async function handler(req, res) {
                 + block('Why them', f.why)
                 + block('Source (captured from link)', f.source || f.src || 'none (direct)')
                 + block('How they say they heard', f.heard)
-                + '<p><strong>Checks passed:</strong> none of the restricted roles; commission-only (10% of fees collected) and about 5+ hours a week OK; independent contractor, own taxes, answers accurate.</p>'
+                + block('Interested in', interest.length ? interest.map((x) => '- ' + x).join('\n') : 'Not answered')
+                + block('Flags to review at interview', flags.length ? flags.map((x) => '- ' + x).join('\n') : 'None')
+                + block('Contractor acknowledgement (independent contractor, own taxes, answers accurate)', f.ack === 'yes' ? 'Yes' : 'Not ticked')
         });
         if (!notify.ok) {
             console.error('Resend notify failed:', notify.status, await notify.text());
