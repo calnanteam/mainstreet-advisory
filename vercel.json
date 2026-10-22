@@ -2,6 +2,28 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/join",
+      "has": [
+        {
+          "type": "query",
+          "key": "src",
+          "value": "(?<tag>card-[A-Za-z0-9-]{1,40})"
+        }
+      ],
+      "destination": "/partners?src=:tag",
+      "permanent": false
+    },
+    {
+      "source": "/join/:handler([A-Za-z0-9-]{1,40})",
+      "destination": "/partners?src=card-:handler",
+      "permanent": false
+    },
+    {
+      "source": "/(join|JOIN|Join)",
+      "destination": "/partners?src=card",
+      "permanent": false
+    },
+    {
       "source": "/prequal",
       "destination": "https://resources.lendesca.com/mainstreet-buyer-prequal",
       "permanent": false
