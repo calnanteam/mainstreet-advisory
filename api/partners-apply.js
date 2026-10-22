@@ -62,7 +62,9 @@ module.exports = async function handler(req, res) {
     if (f.pay === 'questions') flags.push('Has questions about the commission-only structure');
     const interest = pick('interest', interestLabels);
 
-    const required = ['name', 'email', 'location', 'school', 'linkedin', 'network', 'why'];
+    // Card (QR leave-behind) applicants are not asked for a school, so it is optional for src=card*.
+    const required = ['name', 'email', 'location', 'school', 'linkedin', 'network', 'why']
+        .filter((k) => !(k === 'school' && /^card/i.test(f.src)));
     if (required.some((k) => !f[k])) return res.status(400).json({ error: 'Missing required fields' });
     if (!/^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/.test(f.email)) return res.status(400).json({ error: 'Invalid email' });
     if (!/linkedin\.com\//i.test(f.linkedin)) return res.status(400).json({ error: 'Invalid LinkedIn URL' });

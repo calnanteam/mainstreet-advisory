@@ -149,6 +149,11 @@
     body.is-b .sticky-apply.track-b { display: block; }
     @media (min-width: 769px) { body.is-b .sticky-apply.track-b { display: none; } }
     .qcall { background: #fff; border: 1px solid var(--gold); border-radius: 8px; padding: 16px 20px; margin: 8px 0 18px; font-size: .98rem; }
+    /* Card (QR leave-behind) traffic: ?src=card or ?src=card-<handler> */
+    .card-only { display: none; }
+    body.is-card .not-card { display: none !important; }
+    body.is-card .card-only { display: block; }
+    body.is-card span.card-only { display: inline; }
 </style>
 </head>
 <body>
@@ -159,6 +164,7 @@
       document.body.classList.add('is-b');
       document.title = 'Outreach Setter | Mainstreet Advisory';
     }
+    if (q.indexOf('card') === 0) { document.body.classList.add('is-card'); }
     document.addEventListener('DOMContentLoaded', function(){
       var src = (new URLSearchParams(location.search).get('src') || '').toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,40);
       if (!src) return;
@@ -201,7 +207,7 @@
 
 <section class="gp-hero track-a">
   <div class="container">
-    <h4>Remote &middot; Work from home &middot; Students welcome</h4>
+    <h4>Remote &middot; Work from home<span class="not-card"> &middot; Students welcome</span><span class="card-only"> &middot; Your own schedule</span></h4>
     <h1>Work from home. Earn 10% of what we collect.</h1>
     <p class="lede">You introduce business owners and buyers to Mainstreet Advisory, a financial due diligence firm. You start the conversation, our team does the work. Example: a $3,500 engagement pays you $350 (illustration only).</p>
     <a class="btn btn--gold apply-link gp-apply" data-loc="hero" href="/partners-apply" target="_blank" rel="noopener">Apply now</a>
@@ -224,6 +230,7 @@
       <li>Once a prospect is interested, introduce them to our team and join the first meeting. We take it from there: scope, pricing and all of the work.</li>
     </ul>
     <p>You don't need an accounting background. You need to understand what we offer and be good at starting conversations.</p>
+    <p class="card-only">You can also introduce businesses to our sister firm, <strong>Calnan AI Labs</strong>, which finds the manual work that's costing a business money and builds a fix on the software it already uses. Commission terms for AI Labs introductions are confirmed with you in writing before you start.</p>
 
     <h2>What you earn</h2>
     <div class="earn">
@@ -305,7 +312,7 @@
       <li>Strong written and spoken English.</li>
       <li>A LinkedIn profile. It's required once you join, because it's how you'll reach people.</li>
       <li>At least 5 hours a week. Go full-time if you want to.</li>
-      <li>Students: this is built for you. Work from your laptop around classes, build real B2B sales experience and a track record with a financial due diligence firm.</li>
+      <li class="not-card">Students: this is built for you. Work from your laptop around classes, build real B2B sales experience and a track record with a financial due diligence firm.</li>
       <li>Either a network of business owners, buyers or deal people, or real skill at personalized outreach. Students and early-career people are welcome.</li>
     </ul>
     <p class="fine">Not eligible: employees, officers or agents of banks or lenders; people working at CPA, bookkeeping or fractional CFO firms; licensed or regulated professionals such as lawyers, business or real estate brokers, and financial or insurance advisors.</p>

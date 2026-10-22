@@ -335,6 +335,16 @@
   var st0 = setSource();
   var loadedAt = Date.now();
 
+  // Card (QR leave-behind) applicants: school is optional and the wording is not student-only.
+  (function(){
+    var s = ((st0.src || '') + '').toLowerCase();
+    if (s.indexOf('card') !== 0) return;
+    var inp = document.getElementById('school'); if (!inp) return;
+    inp.required = false; inp.placeholder = 'Office manager, or University of Lethbridge, Finance';
+    var lab = document.querySelector('label[for="school"]'); if (lab) lab.textContent = 'Current work or school (optional)';
+    var hint = lab && lab.nextElementSibling; if (hint && hint.classList.contains('hint')) hint.textContent = 'Your current job, field or program.';
+  })();
+
   // Pre-select "How did you hear" from src (still editable).
   (function(){
     var s = ((st0.src || st0.utm_source || '') + '').toLowerCase();
