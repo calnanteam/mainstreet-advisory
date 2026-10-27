@@ -3,7 +3,7 @@
   "redirects": [
     {
       "source": "/prequal",
-      "destination": "https://resources.lendesca.com/mainstreet-buyer-prequal",
+      "destination": "/sba-prequal",
       "permanent": false
     }
   ]
