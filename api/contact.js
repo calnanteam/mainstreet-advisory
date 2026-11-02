@@ -36,6 +36,13 @@ module.exports = async function handler(req, res) {
           return res.status(200).json({ success: true });
     }
 
+    // Time trap: the page stamps form_ts on load. Missing or under 3 seconds = bot.
+    const ts = parseInt(body.form_ts, 10);
+    if (!ts || Date.now() - ts < 3000) {
+          console.warn('Contact form: time trap triggered, dropping silently');
+          return res.status(200).json({ success: true });
+    }
+
     const name = (body.name || '').trim();
     const email = (body.email || '').trim();
     const phone = (body.phone || '').trim();
@@ -44,6 +51,16 @@ module.exports = async function handler(req, res) {
     const referralSource = body['referral-source'] || body.referralSource || 'Not specified';
     const message = (body.message || '').trim();
     if (!name || !email) return res.status(400).json({ error: 'Missing required fields' });
+
+    // Content check: the spam wave puts a link and Cyrillic text in the Name field so the
+    // auto-reply below carries it to the victim's inbox from our domain. Real names never
+    // contain links. Drop silently so nothing (including the auto-reply) goes out.
+    const linkRe = /(https?:\/\/|www\.|tinyurl|bit\.ly|t\.me\/|\.ru\b)/i;
+    const cyrillicRe = /[\u0400-\u04FF]/;
+    if (name.length > 80 || linkRe.test(name) || cyrillicRe.test(name) || cyrillicRe.test(message) || linkRe.test(phone)) {
+          console.warn('Contact form: spam content in name/phone, dropping silently');
+          return res.status(200).json({ success: true });
+    }
 
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) return res.status(500).json({ error: 'Missing RESEND_API_KEY' });
