@@ -234,6 +234,20 @@
       font-weight: 500;
     }
     .trust-item svg { color: var(--gold); flex-shrink: 0; }
+    @media (max-width: 1100px) {
+      .trust-bar__inner { flex-wrap: wrap; gap: 14px 28px; }
+    }
+    @media (max-width: 640px) {
+      .trust-bar { padding: 20px 0; }
+      .trust-bar__inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 16px;
+        justify-items: start;
+      }
+      .trust-item { font-size: .85rem; gap: 8px; line-height: 1.3; }
+      .trust-item:last-child { grid-column: 1 / -1; justify-self: center; }
+    }
 
     /* ─── PROBLEM SECTION ────────────────────────────────────── */
     .problem-grid {
@@ -261,6 +275,15 @@
     .problem-card p { font-size: .95rem; color: var(--muted); max-width: none; }
     @media (max-width: 768px) {
       .problem-grid { grid-template-columns: 1fr; }
+    }
+    .addl-services-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .addl-services-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
     }
 
     /* ─── SERVICES ───────────────────────────────────────────── */
@@ -881,7 +904,7 @@
     </div>
 
     <!-- Additional services -->
-    <div style="margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+    <div class="addl-services-grid">
       <div class="problem-card reveal">
         <h3 style="font-size:1rem; margin-bottom:8px;">Sell-Side & Third-Party QoE</h3>
         <p style="font-size:.9rem; color:var(--muted); margin-bottom:12px;">Seller-commissioned reports that travel with the deal. Surfaces earnings adjustments before buyers do, supports a defensible asking price, and reduces friction across multiple bidders. Third-party engagements can serve both sides.</p>

@@ -75,6 +75,11 @@
     .guide th { background: var(--navy); color: #fff; text-align: left; padding: 10px 12px; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; }
     .guide td { padding: 10px 12px; border-bottom: 1px solid rgba(27,43,74,.12); vertical-align: top; background: #fff; }
     .guide tr:last-child td { border-bottom: none; }
+    @media (max-width: 480px) {
+      .guide table { font-size: .88rem; }
+      .guide th { padding: 8px; letter-spacing: .02em; font-size: .7rem; }
+      .guide td { padding: 8px; overflow-wrap: anywhere; }
+    }
     .guide ol { padding-left: 22px; } .guide ol li { margin-bottom: 10px; }
     .guide .about { background: #fff; border: 1px solid var(--gold); border-radius: 8px; padding: 26px 28px; margin-top: 48px; }
     .guide .about h2 { margin-top: 0; }
