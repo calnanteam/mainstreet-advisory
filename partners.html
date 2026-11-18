@@ -112,6 +112,11 @@
     .gp table { width: 100%; border-collapse: collapse; margin: 6px 0 20px; font-size: .96rem; }
     .gp th { background: var(--navy); color: #fff; text-align: left; padding: 10px 12px; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
     .gp td { padding: 10px 12px; border-bottom: 1px solid rgba(27,43,74,.12); background: #fff; }
+    @media (max-width: 480px) {
+      .gp table { font-size: .88rem; }
+      .gp th { padding: 8px; letter-spacing: .02em; font-size: .7rem; }
+      .gp td { padding: 8px; }
+    }
     .apply { background: #fff; border: 1px solid var(--gold); border-radius: 8px; padding: 28px; margin-top: 56px; text-align: center; }
     .apply h2 { margin-top: 0; }
     .calc { background: #fff; border: 1px solid var(--gold); border-radius: 8px; padding: 22px 24px; margin: 10px 0 22px; }
